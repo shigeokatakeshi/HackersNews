@@ -9,15 +9,17 @@ def main():
     time.sleep(1)  # ここで1秒止まる
 
     dic = response.json()
-    for newstopics in range(0, 50):
+    number_d = input("Hacker Newsトップのニュースをいくつ表示しますか？：")
+    for top_page_news in range(0, int(number_d)):
         # print(dic[newstopics])
-        zipcode = dic[newstopics]
+        news_id = dic[top_page_news]
         contents = requests.get(
-            f"https://hacker-news.firebaseio.com/v0/item/{zipcode}.json?print=pretty"
+            f"https://hacker-news.firebaseio.com/v0/item/{news_id}.json?print=pretty"
         )
         data = contents.json()
         print("'title': '", data.get("title"), "', 'Link':", data.get("url", None))
 
+        time.sleep(1)  # ここで1秒止まる
         # if data["url"] == []:
         #     print("'title': '", data["title"])
 
